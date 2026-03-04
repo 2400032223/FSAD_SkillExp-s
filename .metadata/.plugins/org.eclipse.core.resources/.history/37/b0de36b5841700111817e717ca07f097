@@ -1,0 +1,5 @@
+package com.klu.Skill2_HibernateCRUD.model;
+
+public class Student {
+
+}

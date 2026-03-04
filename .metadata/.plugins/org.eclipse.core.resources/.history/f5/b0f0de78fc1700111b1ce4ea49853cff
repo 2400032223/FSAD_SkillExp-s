@@ -1,0 +1,51 @@
+package com.klu.hql;
+
+import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.query.Query;
+
+public class HQLDemo {
+
+public static void main(String[] args)
+{
+
+Session session = HibernateUtil
+.getSessionFactory()
+.openSession();
+
+session.beginTransaction();
+
+Query<Student> q1 =
+session.createQuery(
+"from Student order by marks desc",
+Student.class);
+
+List<Student> list = q1.list();
+
+System.out.println("Sorted Students:");
+
+for(Student s:list)
+{
+System.out.println(s.getName()+" "+s.getMarks());
+}
+
+Query q2 =
+session.createQuery(
+"select count(*) from Student");
+
+System.out.println("Total Students = "
++ q2.uniqueResult());
+
+Query q3 =
+session.createQuery(
+"select avg(marks) from Student");
+
+System.out.println("Average Marks = "
++ q3.uniqueResult());
+
+session.getTransaction().commit();
+session.close();
+
+}
+
+}
