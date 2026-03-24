@@ -1,11 +1,9 @@
 package com.klu.controller;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.klu.model.Product;
 import com.klu.service.ProductService;
@@ -17,6 +15,13 @@ public class ProductController
 
     @Autowired
     private ProductService service;
+
+    // ADD PRODUCT
+    @PostMapping("/add")
+    public Product addProduct(@RequestBody Product p)
+    {
+        return service.addProduct(p);
+    }
 
     // check product by id
     @GetMapping("/{id}")
@@ -36,7 +41,6 @@ public class ProductController
     @GetMapping("/filter")
     public List<Product> filterByPrice(@RequestParam double min,@RequestParam double max)
     {
-
         return service.getByPriceRange(min,max);
     }
 

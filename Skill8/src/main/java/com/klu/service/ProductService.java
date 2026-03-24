@@ -52,4 +52,9 @@ public class ProductService {
         return repository.findExpensiveProducts(price);
     }
 
+	public Product addProduct(Product p) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
